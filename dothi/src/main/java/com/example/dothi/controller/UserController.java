@@ -2,6 +2,7 @@ package com.example.dothi.controller;
 
 import com.example.dothi.dto.ApiResponse;
 import com.example.dothi.dto.response.UserResponseDTO;
+import com.example.dothi.dto.resquest.RoleRequestDTO;
 import com.example.dothi.dto.resquest.UserRequestDTO;
 import com.example.dothi.service.UserService;
 import jakarta.validation.Valid;
@@ -42,12 +43,18 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@RequestBody UserRequestDTO userRequestDTO, @PathVariable Long id) {
+    public ResponseEntity<?> updateUser(@RequestBody @Valid UserRequestDTO userRequestDTO, @PathVariable Long id) {
         return ResponseEntity.ok(userService.update(userRequestDTO, id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         return ResponseEntity.ok(userService.delete(id));
+    }
+
+    @PutMapping("/{userId}/roles")
+    public ResponseEntity<ApiResponse> assignRolesToUser(@PathVariable Long userId, @RequestBody @Valid RoleRequestDTO roleRequestDTO) {
+        userService.assignRoles(userId, roleRequestDTO.getNames());
+        return ResponseEntity.ok(new ApiResponse(true, "Roles assigned successfully", null));
     }
 }

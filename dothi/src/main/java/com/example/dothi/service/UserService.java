@@ -18,4 +18,6 @@ public interface UserService {
     boolean delete(Long id);
 
     UserResponseDTO update(UserRequestDTO userRequestDTO, Long id);
+
+    public void assignRoles(Long userId, List<String> roleNames);
 }
