@@ -3,9 +3,8 @@ package com.example.dothi.controller;
 import com.example.dothi.dto.ApiResponse;
 import com.example.dothi.dto.response.UserResponseDTO;
 import com.example.dothi.dto.resquest.UserRequestDTO;
-import com.example.dothi.exception.BadRequestException;
-import com.example.dothi.exception.NotFoundException;
 import com.example.dothi.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,24 +18,36 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<UserResponseDTO>>> getAllUser() {
+    public ResponseEntity<ApiResponse<List<UserResponseDTO>>> getAllUsers(
+            @RequestParam(required = false) String searchParams) {
 
-        List<UserResponseDTO> userResponseDTO = userService.getAllUser();
+        List<UserResponseDTO> userResponseDTOs = userService.searchUsers(searchParams);
 
         return ResponseEntity.ok(
                 ApiResponse.<List<UserResponseDTO>>builder()
-                        .data(userResponseDTO)
-                        .message("Thành Công Rồi")
+                        .data(userResponseDTOs)
+                        .message("Search completed successfully")
                         .build());
     }
 
+
     @PostMapping
-    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserRequestDTO userRequestDTO) {
+    public ResponseEntity<UserResponseDTO> createUser(@RequestBody @Valid UserRequestDTO userRequestDTO) {
         return ResponseEntity.ok(userService.save(userRequestDTO));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getUserById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateUser(@RequestBody UserRequestDTO userRequestDTO, @PathVariable Long id) {
+        return ResponseEntity.ok(userService.update(userRequestDTO, id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
-        return ResponseEntity.ok(userService.getAllUser());
+        return ResponseEntity.ok(userService.delete(id));
     }
 }

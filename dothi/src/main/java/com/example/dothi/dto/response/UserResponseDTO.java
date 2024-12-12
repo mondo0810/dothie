@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.math.BigDecimal;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,8 +14,7 @@ import java.util.Set;
 @Data
 public class UserResponseDTO {
     private Long id;
-    private String email;
     private String name;
-    private String password;
-    Set<RoleResponseDTO> roles;
+    private Integer age;
+    private BigDecimal salary;
 }
