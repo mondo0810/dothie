@@ -8,25 +8,25 @@
 
 ### 1. Ảnh Màn Hình 1
 
-Dưới đây là ảnh màn hình đầu tiên của dự án:
+Dưới đây là bộ api của dự án, gồm crud, search user và assgin roles user
 
 ![Screenshot 2024-12-12 202754](./Screenshot%202024-12-12%20202754.png)
 
 ### 2. Ảnh Màn Hình 2
 
-Dưới đây là ảnh màn hình thứ hai của dự án:
+Dưới đây là ảnh màn hình thứ hai của dự án với tính năng list, search
 
 ![Screenshot 2024-12-12 202922](./Screenshot%202024-12-12%20202922.png)
 
 ### 3. Ảnh Màn Hình 3
 
-Dưới đây là ảnh màn hình thứ ba của dự án:
+Dưới đây là ảnh màn hình đã validation các input từ phía backend
 
 ![Screenshot 2024-12-12 202954](./Screenshot%202024-12-12%20202954.png)
 
 ## Các Thư Mục
 
-- `dothi`: Chứa các tài nguyên liên quan đến giao diện.
+- `dothi`: Backend spring boot
 - `frontend`: Chứa mã nguồn frontend của dự án.
 
 ## Cài Đặt
