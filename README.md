@@ -24,6 +24,9 @@ Dưới đây là ảnh màn hình đã validation các input từ phía backend
 
 ![Screenshot 2024-12-12 202954](./Screenshot%202024-12-12%20202954.png)
 
+Tính năng update employee
+![Update](./update.png)
+
 ## Các Thư Mục
 
 - `dothi`: Backend spring boot
