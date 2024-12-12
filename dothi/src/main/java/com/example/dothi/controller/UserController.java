@@ -26,7 +26,7 @@ public class UserController {
         return ResponseEntity.ok(
                 ApiResponse.<List<UserResponseDTO>>builder()
                         .data(userResponseDTO)
-                        .message("Thành Công")
+                        .message("Thành Công Rồi")
                         .build());
     }
 
