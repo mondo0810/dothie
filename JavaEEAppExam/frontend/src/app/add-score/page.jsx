@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -132,14 +131,18 @@ const AddOrEditScore = () => {
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center mb-4">
+    <div className="container mx-auto p-8 ">
+      <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
         {studentScoreId ? "Edit Score" : "Add Score"} for Student
       </h1>
-      <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-4">
+
+      <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-6">
         {/* Chọn sinh viên */}
         <div>
-          <label htmlFor="studentId" className="block text-sm font-medium">
+          <label
+            htmlFor="studentId"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
             Select Student
           </label>
           <select
@@ -147,7 +150,7 @@ const AddOrEditScore = () => {
             value={studentId}
             onChange={(e) => setStudentId(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Select Student</option>
             {students.map((student) => (
@@ -160,7 +163,10 @@ const AddOrEditScore = () => {
 
         {/* Chọn môn học */}
         <div>
-          <label htmlFor="subjectId" className="block text-sm font-medium">
+          <label
+            htmlFor="subjectId"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
             Select Subject
           </label>
           <select
@@ -168,7 +174,7 @@ const AddOrEditScore = () => {
             value={subjectId}
             onChange={(e) => setSubjectId(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Select Subject</option>
             {subjects.map((subject) => (
@@ -181,7 +187,10 @@ const AddOrEditScore = () => {
 
         {/* Điểm */}
         <div>
-          <label htmlFor="score1" className="block text-sm font-medium">
+          <label
+            htmlFor="score1"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
             Score 1
           </label>
           <input
@@ -190,14 +199,17 @@ const AddOrEditScore = () => {
             value={score1}
             onChange={(e) => setScore1(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             min="0"
             max="100"
           />
         </div>
 
         <div>
-          <label htmlFor="score2" className="block text-sm font-medium">
+          <label
+            htmlFor="score2"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
             Score 2
           </label>
           <input
@@ -206,17 +218,18 @@ const AddOrEditScore = () => {
             value={score2}
             onChange={(e) => setScore2(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             min="0"
             max="100"
           />
         </div>
 
+        {/* Nút Submit */}
         <div className="text-center">
           <button
             type="submit"
             disabled={loading}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:bg-blue-300"
           >
             {loading
               ? "Saving..."
@@ -227,8 +240,9 @@ const AddOrEditScore = () => {
         </div>
       </form>
 
+      {/* Thông báo lỗi hoặc thành công */}
       {message && (
-        <div className="mt-4 text-center text-red-500">{message}</div>
+        <div className="mt-4 text-center text-red-500 text-sm">{message}</div>
       )}
     </div>
   );

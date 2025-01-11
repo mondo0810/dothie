@@ -3,14 +3,19 @@ import React from "react";
 
 export default function NavBar() {
   return (
-    <nav className=" border-gray-200 ">
+    <nav className="bg-white border-gray-200 ">
       <div className=" flex flex-wrap items-center justify-between  p-5">
         <Link
           href="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            SIS
+          <img
+            className="w-20 h-20 rounded-full"
+            src="https://cdn-icons-png.flaticon.com/512/1154/1154987.png"
+            alt=""
+          />
+          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-teal-500">
+            SIS System
           </span>
         </Link>
         <button
@@ -42,7 +47,7 @@ export default function NavBar() {
             <li>
               <a
                 href="/"
-                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                className="block py-2 px-3 text-white bg-teal-700 rounded md:bg-transparent md:text-teal-700 md:p-0 dark:text-white md:dark:text-teal-500"
                 aria-current="page"
               >
                 Home
@@ -52,7 +57,7 @@ export default function NavBar() {
             <li>
               <a
                 href="/add-student"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-teal-700 md:p-0 dark:text-white md:dark:hover:text-teal-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Add Student
               </a>

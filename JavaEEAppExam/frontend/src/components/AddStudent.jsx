@@ -53,11 +53,16 @@ const AddStudent = () => {
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center mb-4">Add New Student</h1>
-      <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-4">
+    <div className="container mx-auto p-6  rounded-lg ">
+      <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
+        Add New Student
+      </h1>
+      <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-6">
         <div>
-          <label htmlFor="studentCode" className="block text-sm font-medium">
+          <label
+            htmlFor="studentCode"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
             Student Code
           </label>
           <input
@@ -66,12 +71,15 @@ const AddStudent = () => {
             value={studentCode}
             onChange={(e) => setStudentCode(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         <div>
-          <label htmlFor="fullName" className="block text-sm font-medium">
+          <label
+            htmlFor="fullName"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
             Full Name
           </label>
           <input
@@ -80,12 +88,15 @@ const AddStudent = () => {
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         <div>
-          <label htmlFor="address" className="block text-sm font-medium">
+          <label
+            htmlFor="address"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
             Address
           </label>
           <input
@@ -94,7 +105,7 @@ const AddStudent = () => {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -102,7 +113,7 @@ const AddStudent = () => {
           <button
             type="submit"
             disabled={loading}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:bg-blue-300"
           >
             {loading ? "Adding..." : "Add Student"}
           </button>
@@ -110,7 +121,7 @@ const AddStudent = () => {
       </form>
 
       {message && (
-        <div className="mt-4 text-center text-red-500">{message}</div>
+        <div className="mt-4 text-center text-red-500 text-sm">{message}</div>
       )}
     </div>
   );
