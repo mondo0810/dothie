@@ -1,10 +1,6 @@
-import CreateEmployee from "@/components/CreateEmployee";
-import Employees from "@/components/Employees";
+import Students from "@/components/Students";
+import React from "react";
 
-export default function Home() {
-  return (
-    <div>
-      <Employees />
-    </div>
-  );
+export default function page() {
+  return <Students />;
 }
