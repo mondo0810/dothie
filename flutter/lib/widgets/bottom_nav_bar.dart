@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -8,22 +9,31 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
+    return SalomonBottomBar(
       currentIndex: currentIndex,
       onTap: onTap,
-      items: const [
-        BottomNavigationBarItem(
+      items: [
+        SalomonBottomBarItem(
           icon: Icon(Icons.home),
-          label: 'Home',
+          title: Text("Home"),
+          selectedColor: Colors.purple,
         ),
-        BottomNavigationBarItem(
+        SalomonBottomBarItem(
           icon: Icon(Icons.search),
-          label: 'Search',
+          title: Text("Search"),
+          selectedColor: Colors.teal,
         ),
-        BottomNavigationBarItem(
+        SalomonBottomBarItem(
+          icon: Icon(Icons.favorite_border),
+          title: Text("Likes"),
+          selectedColor: Colors.pink,
+        ),
+        SalomonBottomBarItem(
           icon: Icon(Icons.person),
-          label: 'Profile',
+          title: Text("Profile"),
+          selectedColor: Colors.orange,
         ),
+
       ],
     );
   }

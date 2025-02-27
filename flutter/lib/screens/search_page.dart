@@ -5,8 +5,11 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('🔍 Search Page', style: TextStyle(fontSize: 24)),
+    return Scaffold(
+      // appBar: AppBar(title: const Text("Search Page")),
+      body: const Center(
+        child: Text('🔍 Search Page', style: TextStyle(fontSize: 24)),
+      ),
     );
   }
 }

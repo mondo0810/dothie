@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/home_page.dart';
+import 'screens/home/home_page.dart';
 import 'screens/search_page.dart';
 import 'screens/profile_page.dart';
 import 'widgets/bottom_nav_bar.dart';
@@ -35,6 +35,8 @@ class _MainPageState extends State<MainPage> {
     const HomePage(),
     const SearchPage(),
     const ProfilePage(),
+    const ProfilePage(),
+
   ];
 
   void _onTap(int index) {
