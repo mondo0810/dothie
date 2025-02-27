@@ -13,7 +13,7 @@ class Order {
     required this.quantity,
   });
 
-  // Chuyển đổi từ JSON
+  /// Chuyển từ JSON sang Object
   factory Order.fromJson(Map<String, dynamic> json) {
     return Order(
       item: json['Item'],
@@ -24,7 +24,7 @@ class Order {
     );
   }
 
-  // Chuyển đổi sang JSON
+  /// Chuyển từ Object sang JSON
   Map<String, dynamic> toJson() {
     return {
       'Item': item,

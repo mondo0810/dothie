@@ -1,10 +1,9 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../models/order.dart';
+import '../services/json_service.dart';
 import '../widgets/order_table.dart';
 import '../widgets/order_form.dart';
 import '../widgets/search_bar.dart';
-import '../data/order_data.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -14,44 +13,94 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
+  final JsonService jsonService = JsonService();
   List<Order> orders = [];
 
   @override
   void initState() {
     super.initState();
-    loadOrders();
+    _initializeData();
   }
 
-  void loadOrders() {
-    List<dynamic> jsonList = jsonDecode(orderJson);
-    orders = jsonList.map((e) => Order.fromJson(e)).toList();
+  Future<void> _initializeData() async {
+    await jsonService.initializeOrders(); // Tạo đơn hàng mẫu
+    _loadOrders();
   }
 
-  void addOrder(Order order) {
+  void _loadOrders() async {
+    final loadedOrders = await jsonService.readOrders();
     setState(() {
-      orders.add(order);
+      orders = loadedOrders;
     });
   }
 
-  void searchOrders(String query) {
+  void _addOrder(Order order) async {
+    await jsonService.addOrder(order);
+    _loadOrders();
+  }
+
+  void _deleteOrder(String itemId) async {
+    await jsonService.deleteOrder(itemId);
+    _loadOrders();
+  }
+
+
+  void _searchOrders(String query) async {
+    final searchedOrders = await jsonService.searchOrders(query);
     setState(() {
-      if (query.isEmpty) {
-        loadOrders();
-      } else {
-        orders = orders.where((o) => o.itemName.toLowerCase().contains(query.toLowerCase())).toList();
-      }
+      orders = searchedOrders;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Order List")),
       body: Column(
         children: [
-          SearchBarWidget(onSearch: searchOrders),
-          Expanded(child: OrderTable(orders: orders)),
-          OrderForm(onAddOrder: addOrder),
+          // Cho phép cuộn nếu nội dung dài
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Form thêm đơn hàng
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: OrderForm(onAddOrder: _addOrder),
+                      ),
+                    ),
+                  ),
+
+                  // Thanh tìm kiếm
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: SearchBarWidget(onSearch: _searchOrders),
+                  ),
+
+                  // Danh sách đơn hàng (Table)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: OrderTable(
+                          orders: orders,
+                          onDelete: _deleteOrder, // Truyền hàm xoá
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

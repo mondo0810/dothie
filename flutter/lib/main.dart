@@ -4,8 +4,10 @@ import 'screens/search_page.dart';
 import 'screens/profile_page.dart';
 import 'widgets/bottom_nav_bar.dart';
 import 'widgets/app_bar.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -48,7 +50,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWidget(title: "Flutter App"),
+      appBar: const AppBarWidget(title: "Quản lý đơn hàng"),
       body: IndexedStack(
         index: _currentIndex,
         children: _pages,
