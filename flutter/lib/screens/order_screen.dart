@@ -57,13 +57,11 @@ class _OrderScreenState extends State<OrderScreen> {
     return Scaffold(
       body: Column(
         children: [
-          // Cho phép cuộn nếu nội dung dài
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Form thêm đơn hàng
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Card(
@@ -76,13 +74,11 @@ class _OrderScreenState extends State<OrderScreen> {
                     ),
                   ),
 
-                  // Thanh tìm kiếm
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: SearchBarWidget(onSearch: _searchOrders),
                   ),
 
-                  // Danh sách đơn hàng (Table)
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Card(
